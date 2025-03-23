@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DevXuongMoc.Models.Category>
+
+@{
+    ViewData["Title"] = "Danh sách danh mục";
+    Layout = "~/Areas/Admins/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1 class="text-primary">Danh sách danh mục</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Thêm mới</a>
+</p>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Icon)</th>
+            <th>@Html.DisplayNameFor(model => model.MateTitle)</th>
+            <th>@Html.DisplayNameFor(model => model.MetaKeyword)</th>
+            <th>@Html.DisplayNameFor(model => model.Isdelete)</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Icon)</td>
+                <td>@Html.DisplayFor(modelItem => item.MateTitle)</td>
+                <td>@Html.DisplayFor(modelItem => item.MetaKeyword)</td>
+                <td>@Html.DisplayFor(modelItem => item.Isdelete)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Sửa</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Chi tiết</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

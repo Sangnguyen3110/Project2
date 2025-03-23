@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DevXuongMoc.Models.Banner>
+
+@{
+    ViewData["Title"] = "Danh sách Banner";
+    Layout = "~/Areas/Admins/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1 class="text-primary">Danh sách Banner</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Thêm mới</a>
+</p>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Hình ảnh</th>
+            <th>Tiêu đề</th>
+            <th>Phụ đề</th>
+            <th>Đường dẫn</th>
+            <th>Thứ tự</th>
+         
+            <th>Ghi chú</th>
+            <th>Trạng thái</th>
+            <th>Đã xóa</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item.Image" alt="Ảnh banner" class="img-thumbnail" width="200">
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.SubTitle)</td>
+                <td><a href="@item.Urls" target="_blank">@item.Urls</a></td>
+                <td>@Html.DisplayFor(modelItem => item.Orders)</td>
+                <td>@Html.DisplayFor(modelItem => item.Type)</td>
+               
+                <td>@Html.DisplayFor(modelItem => item.Notes)</td>
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                <td>@Html.DisplayFor(modelItem => item.Isdelete)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Sửa</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Chi tiết</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
